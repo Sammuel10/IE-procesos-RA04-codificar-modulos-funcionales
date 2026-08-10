@@ -1,0 +1,182 @@
+/* ============================================
+   estilos.css - Centro Veterinario PatitasSanas
+   Paleta de colores propia, tipografía y diseño
+   diferenciado para formulario y tabla.
+   ============================================ */
+
+:root {
+    --verde-principal: #2f7a4f;
+    --verde-oscuro: #1f5c39;
+    --verde-claro: #e7f4ec;
+    --naranja-acento: #e8734a;
+    --gris-texto: #2c2c2c;
+    --gris-borde: #d8d8d8;
+    --blanco: #ffffff;
+    --fila-alterna: #f4f9f6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    background-color: #f0f2f0;
+    color: var(--gris-texto);
+}
+
+.cabecera {
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cabecera h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.tarjeta {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta h2 {
+    margin-top: 0;
+    color: var(--verde-oscuro);
+    border-bottom: 2px solid var(--verde-claro);
+    padding-bottom: 0.5rem;
+}
+
+/* ---------- Formulario ---------- */
+.formulario .campo {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--verde-oscuro);
+}
+
+.formulario input {
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--gris-borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--verde-claro);
+    transition: border-color 0.2s ease;
+}
+
+.formulario input:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+    background-color: var(--blanco);
+}
+
+.boton-registrar {
+    margin-top: 0.5rem;
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.boton-registrar:hover {
+    background-color: var(--verde-oscuro);
+}
+
+/* ---------- Tabla de listado ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+thead tr {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+}
+
+th, td {
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gris-borde);
+    font-size: 0.95rem;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--fila-alterna);
+}
+
+tbody tr:hover {
+    background-color: var(--verde-claro);
+}
+
+.sin-datos {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.boton-eliminar {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.boton-eliminar:hover {
+    background-color: #c85a34;
+}
+
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        display: none;
+    }
+    tbody tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--gris-borde);
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    td {
+        border: none;
+        padding: 0.3rem 0;
+    }
+    td::before {
+        content: attr(data-etiqueta);
+        font-weight: 600;
+        color: var(--verde-oscuro);
+        display: block;
+    }
+}

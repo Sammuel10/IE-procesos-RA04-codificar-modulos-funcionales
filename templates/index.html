@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Veterinario PatitasSanas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+    <header class="cabecera">
+        <h1>Centro Veterinario PatitasSanas</h1>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="tarjeta formulario">
+            <h2>Registro de nuevo paciente</h2>
+            <form action="{{ url_for('registrar') }}" method="POST">
+                <div class="campo">
+                    <label for="nombre_mascota">Nombre de la mascota:</label>
+                    <input type="text" id="nombre_mascota" name="nombre_mascota" required>
+                </div>
+
+                <div class="campo">
+                    <label for="especie">Especie:</label>
+                    <input type="text" id="especie" name="especie" required>
+                </div>
+
+                <div class="campo">
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" min="0" required>
+                </div>
+
+                <div class="campo">
+                    <label for="nombre_propietario">Nombre del propietario:</label>
+                    <input type="text" id="nombre_propietario" name="nombre_propietario" required>
+                </div>
+
+                <div class="campo">
+                    <label for="telefono_propietario">Teléfono del propietario:</label>
+                    <input type="text" id="telefono_propietario" name="telefono_propietario" required>
+                </div>
+
+                <button type="submit" class="boton-registrar">Registrar paciente</button>
+            </form>
+        </section>
+
+        <section class="tarjeta listado">
+            <h2>Pacientes registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre mascota</th>
+                        <th>Especie</th>
+                        <th>Edad</th>
+                        <th>Propietario</th>
+                        <th>Teléfono</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for paciente in pacientes %}
+                    <tr>
+                        <td>{{ paciente["id"] }}</td>
+                        <td>{{ paciente["nombre_mascota"] }}</td>
+                        <td>{{ paciente["especie"] }}</td>
+                        <td>{{ paciente["edad"] }}</td>
+                        <td>{{ paciente["nombre_propietario"] }}</td>
+                        <td>{{ paciente["telefono_propietario"] }}</td>
+                        <td>
+                            <form action="{{ url_for('eliminar', paciente_id=paciente['id']) }}" method="POST">
+                                <button type="submit" class="boton-eliminar">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="sin-datos">No hay pacientes registrados todavía.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+</body>
+</html>
